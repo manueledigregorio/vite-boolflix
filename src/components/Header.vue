@@ -1,6 +1,12 @@
 <script>
+import { store } from '../data/store';
 export default {
-name:'Header'
+name:'Header',
+data() {
+  return {
+    store
+  }
+},
 }
 </script>
 
@@ -9,9 +15,9 @@ name:'Header'
     <div class="col-9">
       <img src="/public/logo-boolflix.png" alt="">
     </div>
-    <div class="col-3">
-      <input type="text" name="" id="">
-      <button type="button" class="btn btn-danger">Cerca</button>
+    <div class="col-3 right">
+      <input v-model="store.nameToSearch" type="text" name="" id="">
+      <button @click="$emit('search')" type="button" class="btn btn-danger">Cerca</button>
     </div>
   </div>
 </template>
@@ -27,6 +33,8 @@ name:'Header'
     width: 150px;
     padding:20px
   }
+
+
 }
  
 </style>
