@@ -1,0 +1,7 @@
+@use './partials/vars' as *;
+@import '@fontsource/montserrat/700.css';
+
+body{
+  font-family: $main-font;
+  color: $text-color;
+}
