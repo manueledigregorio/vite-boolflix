@@ -15,9 +15,15 @@ data() {
     <div class="col-9">
       <img src="/public/logo-boolflix.png" alt="">
     </div>
-    <div class="col-3 right">
-      <input v-model="store.nameToSearch" type="text" name="" id="">
-      <button @click="$emit('search')" type="button" class="btn btn-danger">Cerca</button>
+    <div  class="d-flex justify-content-around align-items-center col-3 right">
+
+      <input @keyup.enter="$emit('search')" v-model="store.apiParams.query" type="text" placeholder="search here" >
+      
+      <select v-model="store.cercaApi"  class=" form-select-sm " aria-label="Default select example">
+        <option value="">All</option>
+        <option value="movie">Movie</option>
+        <option value="tv">Series TV</option>
+      </select>
     </div>
   </div>
 </template>
@@ -32,6 +38,9 @@ data() {
   img{
     width: 150px;
     padding:20px
+  }
+  select{
+    padding: 7px
   }
 
 

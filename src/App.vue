@@ -18,17 +18,22 @@
     },
     methods: {
       getApi(){
-        axios.get(store.apiUrl,{
-          params:{
-          query: store.nameToSearch,
-          
-        }
-
+        
+        axios.get(store.apiUrl + store.cercaApi, {
+          params:store.apiParams
+           
         })
         .then(res =>{
-          store.searchFilm = res.data.results
-          console.log(store.searchFilm)
+          if (store.cercaApi === 'movie') {
+            store.searchFilm = res.data.results
+            console.log(store.searchFilm)
+          }
+          if(store.cercaApi === 'tv'){
 
+            store.searchTv = res.data.results
+            console.log(store.searchFilm)
+          }
+          
         })
         .catch(err =>{
           console.log(err)
@@ -46,7 +51,7 @@
 
 <template>
   <Header @search ='getApi'/>
-  <ContainerCard />
+  <ContainerCard v-if="store.searchFilm.length > 0 " />
   
 </template>
 
