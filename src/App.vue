@@ -17,18 +17,18 @@
       }
     },
     methods: {
-      getApi(){
+      getApi(type){
         
-        axios.get(store.apiUrl + store.cercaApi, {
+        axios.get(store.apiUrl + type, {
           params:store.apiParams
            
         })
         .then(res =>{
-          if (store.cercaApi === 'movie') {
+          if (store.cercaApi !== 'tv') {
             store.searchFilm = res.data.results
             console.log(store.searchFilm)
           }
-          if(store.cercaApi === 'tv'){
+          if(store.cercaApi !== 'movie'){
 
             store.searchTv = res.data.results
             console.log(store.searchFilm)
@@ -40,6 +40,12 @@
         })
 
 
+      },
+
+      startApi(){
+        this.getApi('movie');
+        this.getApi('tv')
+
       }
     },
 
@@ -50,7 +56,7 @@
 </script>
 
 <template>
-  <Header @search ='getApi'/>
+  <Header @search ='startApi'/>
   <ContainerCard v-if="store.searchFilm.length > 0 " />
   
 </template>
