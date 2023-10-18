@@ -25,12 +25,12 @@
         })
         .then(res =>{
           if (store.cercaApi !== 'tv') {
-            store.searchFilm = res.data.results
+            store[type] = res.data.results
             console.log(store.searchFilm)
           }
           if(store.cercaApi !== 'movie'){
 
-            store.searchTv = res.data.results
+            store[type] = res.data.results
             console.log(store.searchFilm)
           }
           
@@ -56,11 +56,17 @@
 </script>
 
 <template>
-  <Header @search ='startApi'/>
-  <ContainerCard v-if="store.searchFilm.length > 0 " />
+  <div class="custom">
+    <Header @search ='startApi'/>
+    <ContainerCard />
+  </div>
+  
   
 </template>
 
 <style lang="scss" scoped>
-
+  .custom{
+    background-color: #434343;
+    min-height: 100vh;
+  }
 </style>
